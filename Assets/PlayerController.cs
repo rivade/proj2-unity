@@ -1,15 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
-using Unity.Mathematics;
-using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
     public int speed;
+    public float rotationAngleIncrement = 45f;
 
     Vector2 movement;
     Rigidbody2D rb;
@@ -21,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        RotatePlayer();
     }
 
     void FixedUpdate()
@@ -28,5 +26,21 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
     }
 
-    void OnMove(InputValue value) => movement = value.Get<Vector2>();
+    void OnMove(InputValue value)
+    {
+        movement = value.Get<Vector2>();
+    }
+
+    void RotatePlayer()
+{
+    if (movement.magnitude > 0)
+    {
+        float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
+
+        angle -= 90f;
+
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+}
+
 }
