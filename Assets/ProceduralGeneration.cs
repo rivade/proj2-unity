@@ -61,10 +61,4 @@ public class ProceduralGeneration : MonoBehaviour
     {
         tilemap.SetTile(position, tile);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

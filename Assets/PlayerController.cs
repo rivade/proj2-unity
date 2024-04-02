@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public int speed;
     public float rotationAngleIncrement = 45f;
+    public float rotationSpeed = 5;
 
     Vector2 movement;
     Rigidbody2D rb;
@@ -32,15 +33,16 @@ public class PlayerController : MonoBehaviour
     }
 
     void RotatePlayer()
-{
-    if (movement.magnitude > 0)
     {
-        float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
+        if (movement.magnitude > 0)
+        {
+            float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
+            angle -= 90f;
 
-        angle -= 90f;
-
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+            Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        }
     }
-}
+
 
 }
