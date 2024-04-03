@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public int speed;
-    public float rotationAngleIncrement = 45f;
     public float rotationSpeed = 5;
 
     Vector2 movement;

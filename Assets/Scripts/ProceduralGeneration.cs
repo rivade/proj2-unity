@@ -1,22 +1,20 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.VFX;
 
 public class ProceduralGeneration : MonoBehaviour
 {
-    public Tilemap tilemap;
-    public RuleTile tile;
+    public Tilemap tileMap;
+    public TileBase ruleTile;
 
     public int width, height;
 
     public Texture2D noiseTexture;
 
-    [Range(0,1)]
+    [Range(0, 1)]
     public float surfaceValue = 0.5f;
+
+    [Range(0, 1)]
     public float caveFreq = 0.1f;
 
     private float seed;
@@ -51,14 +49,14 @@ public class ProceduralGeneration : MonoBehaviour
             {
                 if (surfaceValue > noiseTexture.GetPixel(x, y).r)
                 {
-                    PlaceTile(tile, new Vector3Int(x, y));
+                    PlaceTile(tileMap, ruleTile, new Vector3Int(x, y));
                 }
             }
         }
     }
 
-    private void PlaceTile(RuleTile tile, Vector3Int position)
+    private void PlaceTile(Tilemap tileMap, TileBase tile, Vector3Int position)
     {
-        tilemap.SetTile(position, tile);
+        tileMap.SetTile(position, tile);
     }
 }

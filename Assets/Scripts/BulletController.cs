@@ -38,6 +38,7 @@ public class BulletController : MonoBehaviour
                 break;
 
             case "enemy":
+                ScoreHandler.UpdateScore(100);
                 Destroy(other.gameObject);
                 Destroy(this.gameObject);
                 break;
