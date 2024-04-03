@@ -1018,12 +1018,24 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 964746033, guid: 6f753ad556d0daa4dbbfc329c6f77e24, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1393954173}
+    - target: {fileID: 964746033, guid: 6f753ad556d0daa4dbbfc329c6f77e24, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 519420028}
     - target: {fileID: 6792510214527669904, guid: 6f753ad556d0daa4dbbfc329c6f77e24, type: 3}
       propertyPath: m_Name
       value: BulletPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 6792510214527669904, guid: 6f753ad556d0daa4dbbfc329c6f77e24, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792510214527669904, guid: 6f753ad556d0daa4dbbfc329c6f77e24, type: 3}
+      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7763735790320888543, guid: 6f753ad556d0daa4dbbfc329c6f77e24, type: 3}
