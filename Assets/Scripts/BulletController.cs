@@ -46,6 +46,10 @@ public class BulletController : MonoBehaviour
 
     void OnDestroy()
     {
+        float distanceToPlayer = Vector3.Distance(transform.position, Camera.main.transform.position);
+        float shakeMagnitude = Mathf.Clamp01(1f - (distanceToPlayer / 10f)) * 0.75f;
+
+        Camera.main.GetComponent<CameraController>().StartShake(0.75f, shakeMagnitude);
         GameObject explosionInstance = Instantiate(explosion, this.transform.position, this.transform.rotation);
         Destroy(explosionInstance, 0.75f);
     }
