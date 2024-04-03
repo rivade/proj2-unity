@@ -44,7 +44,7 @@ public class BulletController : MonoBehaviour
         }
     }
 
-    void OnDisable()
+    void OnDestroy()
     {
         GameObject explosionInstance = Instantiate(explosion, this.transform.position, this.transform.rotation);
         Destroy(explosionInstance, 0.75f);
