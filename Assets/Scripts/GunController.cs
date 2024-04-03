@@ -4,7 +4,10 @@ using UnityEngine.InputSystem;
 public class GunController : MonoBehaviour
 {
     [SerializeField]
-    GameObject bullet;
+    GameObject standardBullet;
+
+    [SerializeField]
+    GameObject heavyBullet;
 
     public float rotationSpeed = 5f;
 
@@ -18,10 +21,8 @@ public class GunController : MonoBehaviour
 
     void OnFire()
     {
-        Instantiate(bullet, transform.GetChild(0).gameObject.transform.position, transform.rotation);
+        Instantiate(standardBullet, transform.GetChild(0).gameObject.transform.position, transform.rotation);
     }
-
-
 
     void Update()
     {

@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4c40b40f7aff784aa5e50ccbf400f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  explosion: {fileID: 9158833822667844127, guid: 764419ec8d9bc284d8748d8982f55322, type: 3}
   speed: 0.5
   rotationSpeed: 7.5
 --- !u!61 &5205069351131836819

@@ -6,8 +6,13 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    private int hp = 100;
+
     [SerializeField]
     GameObject player;
+
+    [SerializeField]
+    GameObject explosion;
 
     [Range(0, 1)]
     public float speed;
@@ -20,7 +25,7 @@ public class EnemyController : MonoBehaviour
         Vector3 playerPos = player.transform.position;
 
         Vector3 directionToPlayer = playerPos - transform.position;
-        
+
         if (directionToPlayer.magnitude <= 10)
         {
             transform.position = Vector3.Lerp(transform.position, playerPos, speed * Time.deltaTime);
@@ -31,6 +36,18 @@ public class EnemyController : MonoBehaviour
 
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
+
+        if (hp <= 0) Destroy(this.gameObject);
     }
 
+    void OnDestroy()
+    {
+        ScoreHandler.UpdateScore(100);
+        Instantiate(explosion, transform.position, transform.rotation);
+    }
+
+    public void OnHit(int damage)
+    {
+        hp -= damage;
+    }
 }

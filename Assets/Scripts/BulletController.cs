@@ -5,8 +5,20 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public float speed = 10f;
-    public GameObject explosion;
+    public enum BulletTypes
+    {
+        Standard,
+        Heavy
+    }
+
+    [SerializeField]
+    BulletTypes bulletType;
+
+    [SerializeField]
+    GameObject explosion;
+
+    private int speed;
+    private int damage;
 
     private float instantiationTime;
     private float timeAlive = 0;
@@ -14,6 +26,19 @@ public class BulletController : MonoBehaviour
     void Start()
     {
         instantiationTime = Time.time;
+
+        switch (bulletType)
+        {
+            case BulletTypes.Standard:
+                speed = 10;
+                damage = 50;
+            break;
+
+            case BulletTypes.Heavy:
+                speed = 5;
+                damage = 100;
+            break;
+        }
     }
 
     // Update is called once per frame
@@ -33,13 +58,12 @@ public class BulletController : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "wall":
-                other.gameObject.GetComponent<WallBreakHandler>().OnHit(new Vector3Int((int)transform.position.x, (int)transform.position.y, 0));
+                other.gameObject.GetComponent<WallBreakHandler>().OnHit(new Vector3Int((int)transform.position.x, (int)transform.position.y, 0), damage);
                 Destroy(this.gameObject);
                 break;
 
             case "enemy":
-                ScoreHandler.UpdateScore(100);
-                Destroy(other.gameObject);
+                other.GetComponent<EnemyController>().OnHit(damage);
                 Destroy(this.gameObject);
                 break;
         }
