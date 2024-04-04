@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1301369146
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1301369147}
+  m_Layer: 0
+  m_Name: Barrel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1301369147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301369146}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.24, y: 1.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5205069351131836818}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5205069350452243496
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +200,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5205069350846073460}
+  - {fileID: 1301369147}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -236,9 +268,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4c40b40f7aff784aa5e50ccbf400f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 1609766804169366049, guid: 1ad3819bbfbdaba43a97aa2c50c8db9c, type: 3}
   explosion: {fileID: 9158833822667844127, guid: 764419ec8d9bc284d8748d8982f55322, type: 3}
   speed: 0.5
   rotationSpeed: 7.5
+  timeBetweenShots: 1
 --- !u!61 &5205069351131836819
 BoxCollider2D:
   m_ObjectHideFlags: 0

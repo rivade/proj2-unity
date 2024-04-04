@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+public enum BulletTypes
+{
+    Standard,
+    Heavy,
+    EnemyBullet
+}
+
 public class BulletController : MonoBehaviour
 {
-    public enum BulletTypes
-    {
-        Standard,
-        Heavy,
-        EnemyBullet
-    }
-
     [SerializeField]
     BulletTypes bulletType;
 
     [SerializeField]
     GameObject explosion;
 
+    private GameObject player;
     private int speed;
     private int damage;
 
@@ -27,24 +29,25 @@ public class BulletController : MonoBehaviour
     void Start()
     {
         instantiationTime = Time.time;
-
         switch (bulletType)
         {
             case BulletTypes.Standard:
                 speed = 10;
                 damage = 50;
-            break;
+                break;
 
             case BulletTypes.Heavy:
                 speed = 5;
                 damage = 100;
-            break;
+                break;
 
             case BulletTypes.EnemyBullet:
                 speed = 10;
                 damage = 10;
-            break;
+                break;
         }
+
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -68,25 +71,25 @@ public class BulletController : MonoBehaviour
                 Destroy(this.gameObject);
                 HealthHandler.UpdateHealth(damage);
             }
-        }        
-        else switch (other.gameObject.tag)
-        {
-            case "wall":
-                other.gameObject.GetComponent<WallBreakHandler>().OnHit(new Vector3Int((int)transform.position.x, (int)transform.position.y, 0), damage);
-                Destroy(this.gameObject);
-                break;
-
-            case "enemy":
-                other.GetComponent<EnemyController>().OnHit(damage);
-                Destroy(this.gameObject);
-                break;
         }
+        else switch (other.gameObject.tag)
+            {
+                case "wall":
+                    other.gameObject.GetComponent<WallBreakHandler>().OnHit(new Vector3Int((int)transform.position.x, (int)transform.position.y, 0), damage);
+                    Destroy(this.gameObject);
+                    break;
+
+                case "enemy":
+                    other.GetComponent<EnemyController>().OnHit(damage);
+                    Destroy(this.gameObject);
+                    break;
+            }
     }
 
     void OnDestroy()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, Camera.main.transform.position);
-        float shakeMagnitude = Mathf.Clamp01(1f - (distanceToPlayer / 10f)) * 0.75f;
+        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        float shakeMagnitude = Mathf.Clamp01(1f - distanceToPlayer / 7.5f) * 0.5f;
 
         Camera.main.GetComponent<CameraController>().StartShake(0.75f, shakeMagnitude);
         GameObject explosionInstance = Instantiate(explosion, this.transform.position, this.transform.rotation);

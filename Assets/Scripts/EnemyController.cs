@@ -8,7 +8,6 @@ public class EnemyController : MonoBehaviour
 {
     private int hp = 100;
 
-    [SerializeField]
     GameObject player;
 
     [SerializeField]
@@ -25,6 +24,11 @@ public class EnemyController : MonoBehaviour
 
     public int timeBetweenShots;
     private float timeSinceShot = 0;
+
+    void Start()
+    {
+        player = GameObject.FindWithTag("Player");
+    }
 
     void Update()
     {

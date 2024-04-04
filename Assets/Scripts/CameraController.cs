@@ -21,7 +21,6 @@ public class CameraController : MonoBehaviour
         while (elapsed < duration)
         {
             Vector3 previousPos = new Vector3(transform.parent.position.x, transform.parent.position.y, transform.position.z);
-
             Vector3 shakePosition = previousPos + (Vector3)Random.insideUnitCircle * magnitude;
 
             transform.position = shakePosition;
