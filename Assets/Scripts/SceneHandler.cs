@@ -5,5 +5,5 @@ using UnityEngine.SceneManagement;
 
 public class SceneHandler : MonoBehaviour
 {
-    public void GoToScene(int sceneNumber) => SceneManager.LoadScene(sceneNumber);
+    public static void GoToScene(int sceneNumber) => SceneManager.LoadScene(sceneNumber);
 }

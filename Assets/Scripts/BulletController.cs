@@ -8,7 +8,8 @@ public class BulletController : MonoBehaviour
     public enum BulletTypes
     {
         Standard,
-        Heavy
+        Heavy,
+        EnemyBullet
     }
 
     [SerializeField]
@@ -38,6 +39,11 @@ public class BulletController : MonoBehaviour
                 speed = 5;
                 damage = 100;
             break;
+
+            case BulletTypes.EnemyBullet:
+                speed = 10;
+                damage = 10;
+            break;
         }
     }
 
@@ -55,7 +61,15 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        switch (other.gameObject.tag)
+        if (bulletType == BulletTypes.EnemyBullet)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                Destroy(this.gameObject);
+                HealthHandler.UpdateHealth(damage);
+            }
+        }        
+        else switch (other.gameObject.tag)
         {
             case "wall":
                 other.gameObject.GetComponent<WallBreakHandler>().OnHit(new Vector3Int((int)transform.position.x, (int)transform.position.y, 0), damage);

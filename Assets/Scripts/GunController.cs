@@ -21,7 +21,7 @@ public class GunController : MonoBehaviour
 
     void OnFire()
     {
-        Instantiate(standardBullet, transform.GetChild(0).gameObject.transform.position, transform.rotation);
+        Instantiate(heavyBullet, transform.GetChild(0).gameObject.transform.position, transform.rotation);
     }
 
     void Update()
