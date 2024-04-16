@@ -18,8 +18,7 @@ public class WallBreakHandler : MonoBehaviour
                 {
                     for (int y = -1; y <= 1; y++)
                     {
-                        Vector3Int tempPosition = position + new Vector3Int(x, y, 0);
-                        GetComponent<Tilemap>().SetTile(tempPosition, null);
+                        GetComponent<Tilemap>().SetTile(position, null);
                     }
                 }
                 break;

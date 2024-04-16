@@ -75,7 +75,8 @@ public class BulletController : MonoBehaviour
         else switch (other.gameObject.tag)
             {
                 case "wall":
-                    other.gameObject.GetComponent<WallBreakHandler>().OnHit(new Vector3Int((int)transform.position.x, (int)transform.position.y, 0), damage);
+                    other.gameObject.GetComponent<WallBreakHandler>().OnHit
+                    (new Vector3Int((int)transform.position.x, (int)transform.position.y, 0), damage);
                     Destroy(this.gameObject);
                     break;
 
@@ -86,7 +87,7 @@ public class BulletController : MonoBehaviour
             }
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         float shakeMagnitude = Mathf.Clamp01(1f - distanceToPlayer / 7.5f) * 0.5f;

@@ -46,10 +46,11 @@ public class EnemyController : MonoBehaviour
         if (hp <= 0) Destroy(this.gameObject);
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         ScoreHandler.UpdateScore(100);
-        Instantiate(explosion, transform.position, transform.rotation);
+        GameObject explosionInstance = Instantiate(explosion, this.transform.position, this.transform.rotation);
+        Destroy(explosionInstance, 0.75f);
     }
 
     public void OnHit(int damage)
